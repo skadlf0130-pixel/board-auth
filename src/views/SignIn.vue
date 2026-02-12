@@ -22,6 +22,12 @@ const changeModeShowPw = () => {
 const signIn = async () => {
     const result = await userService.signIn( state.signin );
     console.log('result: ', result);
+
+    if(result.resultData === null ){ // 로그인 실패
+        alert(result.resultMessage); 
+        return;
+    }
+
     router.push('/')
     authentication.signIn(result.resultData);
 }
